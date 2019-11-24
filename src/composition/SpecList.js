@@ -4,7 +4,7 @@ class SpecList extends React.Component {
     render() {
         const features = Object.keys(this.props.features).map((feature, idx) => {
             const featureHash = feature + '-' + idx;
-            const options = feature.map((item) => {})
+            const options = this.props.features[feature].map((item) => {})
         });
         return(
             <form className="main__form">
