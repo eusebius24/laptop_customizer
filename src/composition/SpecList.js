@@ -15,20 +15,20 @@ class SpecList extends React.Component {
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
-      
-      });
-      
+    
       return (
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
             <h3>{feature}</h3>
           </legend>
-          <FeatureItem features={this.props.features} />
+          <FeatureItem features={this.props.features} feature={this.props.features[feature]}/>
         </fieldset>
-      );
+    );
     
 
-    return (<div>{features}</div>)
+    
+      });
+      return (<div>{features}</div>);
   }
 }
   
