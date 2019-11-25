@@ -34,7 +34,7 @@ class FeatureItem extends React.Component {
             id={itemHash}
             className="feature__option"
             name={slugify(JSON.stringify(this.props.feature))}
-            checked={item.name === this.state.selected}
+            // checked={item.name === selected[this.props.feature].name}
             onChange={e => this.props.handleUpdateFeature(e.target.id)}
           />
           <label htmlFor={itemHash} className="feature__label">
