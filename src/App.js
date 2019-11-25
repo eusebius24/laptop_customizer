@@ -41,6 +41,7 @@ class App extends Component {
     this.setState({
       selected
     });
+    console.log(selected);
   };
   
   render() {const summary = Object.keys(this.state.selected).map((feature, idx) => {
@@ -71,7 +72,7 @@ class App extends Component {
       <main>
         <form className="main__form">
           <h2>Customize your laptop</h2>
-          <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature,)} />
+          <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} />
         </form>
         {/* <section className="main__summary">
           <h2>Your cart</h2>

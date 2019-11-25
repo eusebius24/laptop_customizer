@@ -24,7 +24,7 @@ class SpecList extends React.Component {
               className="feature__option"
               name={slugify(feature)}
               checked={item.name === this.props.selected[feature].name}
-              onChange={e => this.props.handleUpdateFeature(e.target.value)}
+              onChange={e => this.props.handleUpdateFeature(e.target.id)}
             />
             <label htmlFor={itemHash} className="feature__label">
               {item.name} ({USCurrencyFormat.format(item.cost)})
