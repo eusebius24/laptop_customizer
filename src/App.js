@@ -34,26 +34,34 @@ class App extends Component {
       }
     }
   };
+
+  updateFeature = (feature, newValue) => {
+    const selected = Object.assign({}, this.state.selected);
+    selected[feature] = newValue;
+    this.setState({
+      selected
+    });
+  };
   
   render() {const summary = Object.keys(this.state.selected).map((feature, idx) => {
     const featureHash = feature + '-' + idx;
     const selectedOption = this.state.selected[feature];
 
-    return (
-      <div className="summary__option" key={featureHash}>
-        <div className="summary__option__label">{feature} </div>
-        <div className="summary__option__value">{selectedOption.name}</div>
-        <div className="summary__option__cost">
-          {USCurrencyFormat.format(selectedOption.cost)}
-        </div>
-      </div>
-    );
+    // return (
+    //   <div className="summary__option" key={featureHash}>
+    //     <div className="summary__option__label">{feature} </div>
+    //     <div className="summary__option__value">{selectedOption.name}</div>
+    //     <div className="summary__option__cost">
+    //       {USCurrencyFormat.format(selectedOption.cost)}
+    //     </div>
+    //   </div>
+    // );
   });
 
-  const total = Object.keys(this.state.selected).reduce(
-    (acc, curr) => acc + this.state.selected[curr].cost,
-    0
-  );
+  // const total = Object.keys(this.state.selected).reduce(
+  //   (acc, curr) => acc + this.state.selected[curr].cost,
+  //   0
+  // );
 
   return (
     <div className="App">
@@ -63,9 +71,9 @@ class App extends Component {
       <main>
         <form className="main__form">
           <h2>Customize your laptop</h2>
-          <SpecList selected = {this.state.selected} features = {this.props.features} />
+          <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature,)} />
         </form>
-        <section className="main__summary">
+        {/* <section className="main__summary">
           <h2>Your cart</h2>
           {summary}
           <div className="summary__total">
@@ -74,7 +82,7 @@ class App extends Component {
               {USCurrencyFormat.format(total)}
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );}

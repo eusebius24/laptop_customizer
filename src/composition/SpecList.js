@@ -6,13 +6,9 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   currency: 'USD'
 });
 
-class SpecList extends React.Component{updateFeature = (feature, newValue) => {
-  const selected = Object.assign({}, this.props.selected);
-  selected[feature] = newValue;
-  //   this.setState({
-  //     selected
-  //   });
-  }
+class SpecList extends React.Component {
+
+
 
 
   render() {
@@ -28,7 +24,7 @@ class SpecList extends React.Component{updateFeature = (feature, newValue) => {
               className="feature__option"
               name={slugify(feature)}
               checked={item.name === this.props.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
+              onChange={e => this.props.handleUpdateFeature(e.target.value)}
             />
             <label htmlFor={itemHash} className="feature__label">
               {item.name} ({USCurrencyFormat.format(item.cost)})
@@ -46,6 +42,8 @@ class SpecList extends React.Component{updateFeature = (feature, newValue) => {
         </fieldset>
       );
     });
+
+    return <div>{features}</div>
   }
 }
   
