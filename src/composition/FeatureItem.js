@@ -20,6 +20,11 @@ class FeatureItem extends React.Component {
 
   updateSelected = () => {};
 
+ handleUpdates() {
+    this.props.handleUpdateFeature(this.props.feature, event.target.id),
+    this.props.handleUpdateFeatureHash(featureHash)
+    }
+
   render() {
     const { selected } = this.state;
     // console.log(selected);
@@ -35,10 +40,7 @@ class FeatureItem extends React.Component {
             className="feature__option"
             name={slugify(JSON.stringify(this.props.feature))}
             // checked={item.name === selected[this.props.feature].name}
-            onChange={e => function() {
-              this.props.handleUpdateFeature(this.props.feature, e.target.id),
-              this.props.handleUpdateFeatureHash(featureHash)
-              }
+            onChange={event => this.handleUpdates()}
           />
           <label htmlFor={itemHash} className="feature__label">
             {item.name} ({USCurrencyFormat.format(item.cost)})
