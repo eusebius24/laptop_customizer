@@ -8,25 +8,18 @@ const USCurrencyFormat = new Intl.NumberFormat("en-US", {
 
 class FeatureItem extends React.Component {
   state = {
-    selected: null
+    selected: this.props.selected
   };
-
-  componentDidMount() {
-    const feature = this.props.feature;
-    this.setState({
-      selected: feature[0]
-    });
-  }
 
   updateSelected = () => {};
 
  handleUpdates(event) {
     this.props.handleUpdateFeature(this.props.feature, event.target.id);
-    this.props.handleUpdateFeatureHash(this.props.featureHash)
+    this.props.handleUpdateFeatureHash(this.props.featureHash);
     }
 
   render() {
-    const { selected } = this.state;
+    const selected = this.state;
     // console.log(selected);
     const options = this.props.feature.map((item, index) => {
       // console.log(item);
@@ -38,14 +31,15 @@ class FeatureItem extends React.Component {
             type="radio"
             id={itemHash}
             className="feature__option"
-            name={slugify(JSON.stringify(this.props.feature))}
-            // checked={item.name === selected[this.props.feature].name}
-            onChange={event => this.handleUpdates(event)}
+            name={slugify(JSON.stringify(item.name))}
+            // checked={item.name === this.props.feature.name}
+            onChange={event => this.props.handleUpdateFeature(this.props.feature, event.target.id)}
           />
           <label htmlFor={itemHash} className="feature__label">
             {item.name} ({USCurrencyFormat.format(item.cost)})
           </label>
         </div>
+        
       );
     });
     return <div>{options}</div>;

@@ -17,7 +17,7 @@ class SpecList extends React.Component {
           <legend className="feature__name">
             <h3>{feature}</h3>
           </legend>
-          <FeatureItem feature={this.props.features[feature]} featureHash={featureHash} handleUpdateFeature={this.props.handleUpdateFeature} handleUpdateFeatureHash = {this.props.handleUpdateFeatureHash} />
+          <FeatureItem feature={this.props.features[feature]} featureHash={featureHash} handleUpdateFeature = {(feature, newValue) => this.props.handleUpdateFeature(feature, newValue)} handleUpdateFeatureHash = {this.props.handleUpdateFeatureHash} />
         </fieldset>
       );
     });

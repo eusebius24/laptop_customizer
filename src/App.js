@@ -38,11 +38,12 @@ class App extends Component {
 
   updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
+    console.log('selected: ', selected)
     selected[feature] = newValue;
     this.setState({
-      selected
+      selected: newValue
     });
-    // console.log(selected);
+    console.log('newValue: ' , newValue);
   };
 
   updateFeatureHash = (featureHash) => {
@@ -53,23 +54,24 @@ class App extends Component {
   
   render() {
     
-  return (
-    <div className="App">
-      <header>
-        <h1>ELF Computing | Laptops</h1>
-      </header>
-      <main>
-        <form className="main__form">
-          <h2>Customize your laptop</h2>
-          <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} handleUpdateFeatureHash = {(featureHash) => this.updateFeatureHash}/>
-        </form>
-        <section className="main__summary">
-          <h2>Your cart</h2>
-          <ShoppingCart selected = {this.state.selected} features = {this.props.features} featureHash = {this.state.featureHash} />
-        </section>
-      </main>
-    </div>
-  );}
+    return (
+      <div className="App">
+        <header>
+          <h1>ELF Computing | Laptops</h1>
+        </header>
+        <main>
+          <form className="main__form">
+            <h2>Customize your laptop</h2>
+            <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} handleUpdateFeatureHash = {(featureHash) => this.updateFeatureHash}/>
+          </form>
+          <section className="main__summary">
+            <h2>Your cart</h2>
+            <ShoppingCart selected = {this.state.selected} features = {this.props.features} featureHash = {this.state.featureHash} />
+          </section>
+        </main>
+      </div>
+    );
+  }
 
     
   }
