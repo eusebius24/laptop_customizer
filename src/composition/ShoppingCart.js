@@ -27,7 +27,7 @@ class ShoppingCart extends React.Component {
         return (
             <div className="summary__option" key={this.props.featureHash}>
             <div className="summary__option__label">{this.props.feature} </div>
-            <div className="summary__option__value">{selectedOption.name}</div>
+            <div className="summary__option__value">{this.props.selected[this.props.feature].name}</div>
             <div className="summary__option__cost">
                 {USCurrencyFormat.format(this.props.selected[this.props.feature].cost)}
             </div>
