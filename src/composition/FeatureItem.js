@@ -21,8 +21,8 @@ class FeatureItem extends React.Component {
   updateSelected = () => {};
 
  handleUpdates() {
-    this.props.handleUpdateFeature(this.props.feature, event.target.id),
-    this.props.handleUpdateFeatureHash(featureHash)
+    this.props.handleUpdateFeature(this.props.feature, event.target.id);
+    this.props.handleUpdateFeatureHash(this.props.featureHash)
     }
 
   render() {
@@ -40,7 +40,7 @@ class FeatureItem extends React.Component {
             className="feature__option"
             name={slugify(JSON.stringify(this.props.feature))}
             // checked={item.name === selected[this.props.feature].name}
-            onChange={event => this.handleUpdates()}
+            onChange={event => this.handleUpdates}
           />
           <label htmlFor={itemHash} className="feature__label">
             {item.name} ({USCurrencyFormat.format(item.cost)})
