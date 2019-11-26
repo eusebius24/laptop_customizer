@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // in both URLs and html attributes
 import slugify from 'slugify';
 import SpecList from './composition/SpecList';
+import ShoppingCart from './composition/ShoppingCart';
 import './App.css';
 
 // This object will allow us to
@@ -41,29 +42,17 @@ class App extends Component {
     this.setState({
       selected
     });
-    console.log(selected);
+    // console.log(selected);
   };
+
+  updateFeatureHash = (featureHash) => {
+    this.setState({
+      featureHash: featureHash
+    })
+  }
   
-  render() {const summary = Object.keys(this.state.selected).map((feature, idx) => {
-    const featureHash = feature + '-' + idx;
-    const selectedOption = this.state.selected[feature];
-
-    // return (
-    //   <div className="summary__option" key={featureHash}>
-    //     <div className="summary__option__label">{feature} </div>
-    //     <div className="summary__option__value">{selectedOption.name}</div>
-    //     <div className="summary__option__cost">
-    //       {USCurrencyFormat.format(selectedOption.cost)}
-    //     </div>
-    //   </div>
-    // );
-  });
-
-  // const total = Object.keys(this.state.selected).reduce(
-  //   (acc, curr) => acc + this.state.selected[curr].cost,
-  //   0
-  // );
-
+  render() {
+    
   return (
     <div className="App">
       <header>
@@ -72,18 +61,12 @@ class App extends Component {
       <main>
         <form className="main__form">
           <h2>Customize your laptop</h2>
-          <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} />
+          <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} handleUpdateFeatureHash = {(featureHash) => this.updateFeatureHash}/>
         </form>
-        {/* <section className="main__summary">
+        <section className="main__summary">
           <h2>Your cart</h2>
-          {summary}
-          <div className="summary__total">
-            <div className="summary__total__label">Total</div>
-            <div className="summary__total__value">
-              {USCurrencyFormat.format(total)}
-            </div>
-          </div>
-        </section> */}
+          <ShoppingCart selected = {this.state.selected} features = {this.props.features} featureHash = {this.state.featureHash} />
+        </section>
       </main>
     </div>
   );}
