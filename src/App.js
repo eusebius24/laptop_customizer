@@ -45,6 +45,7 @@ class App extends Component {
     selected[feature] = newValue;
     console.log("selected: ", selected);
     console.log("newValue: ", newValue)
+    console.log("feature", feature)
     this.setState({
       selected
     });
