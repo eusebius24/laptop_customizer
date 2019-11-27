@@ -15,10 +15,10 @@ class ShoppingCart extends React.Component {
         const summary = Object.keys(this.props.selected).map((feature, idx) => {
             const featureHash = feature + '-' + idx;
             const selectedOption = this.props.selected[feature];
-      
+            console.log("selectedOption: ", selectedOption);
             return (
               <div className="summary__option" key={featureHash}>
-                <div className="summary__option__label">{summary[feature]} </div>
+                <div className="summary__option__label">{feature} </div>
                 <div className="summary__option__value">{selectedOption.name}</div>
                 <div className="summary__option__cost">
                   {USCurrencyFormat.format(selectedOption.cost)}
@@ -26,7 +26,7 @@ class ShoppingCart extends React.Component {
               </div>
             );
           });
-      
+          
           const total = Object.keys(this.props.selected).reduce(
             (acc, curr) => acc + this.props.selected[curr].cost,
             0
@@ -34,6 +34,7 @@ class ShoppingCart extends React.Component {
         
            
         return (
+          
             <div>{summary}</div>
         );
 

@@ -15,6 +15,10 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 });
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.updateFeature = this.updateFeature.bind(this)
+  }
   state = {
     selected: {
       Processor: {
@@ -37,20 +41,18 @@ class App extends Component {
   };
 
   updateFeature = (feature, newValue) => {
+    console.log("feature: ", feature)
+    console.log('newValue: ' , newValue);
     const selected = Object.assign({}, this.state.selected);
-    console.log('selected: ', selected)
+    
     selected[feature] = newValue;
+    console.log('selected[feature]: ', selected[feature])
+    console.log('selected: ', selected)
     this.setState({
       selected: newValue
     });
-    console.log('newValue: ' , newValue);
+   
   };
-
-  updateFeatureHash = (featureHash) => {
-    this.setState({
-      featureHash: featureHash
-    })
-  }
   
   render() {
     
@@ -62,11 +64,11 @@ class App extends Component {
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
-            <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} handleUpdateFeatureHash = {(featureHash) => this.updateFeatureHash}/>
+            <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} />
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
-            <ShoppingCart selected = {this.state.selected} features = {this.props.features} featureHash = {this.state.featureHash} />
+            <ShoppingCart selected = {this.state.selected} />
           </section>
         </main>
       </div>

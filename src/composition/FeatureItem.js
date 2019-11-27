@@ -7,16 +7,15 @@ const USCurrencyFormat = new Intl.NumberFormat("en-US", {
 });
 
 class FeatureItem extends React.Component {
+  constructor(props) {
+    super(props);
+    
+  }
   state = {
     selected: this.props.selected
   };
 
   updateSelected = () => {};
-
- handleUpdates(event) {
-    this.props.handleUpdateFeature(this.props.feature, event.target.id);
-    this.props.handleUpdateFeatureHash(this.props.featureHash);
-    }
 
   render() {
     const selected = this.state;
@@ -33,7 +32,7 @@ class FeatureItem extends React.Component {
             className="feature__option"
             name={slugify(JSON.stringify(item.name))}
             // checked={item.name === this.props.feature.name}
-            onChange={event => this.props.handleUpdateFeature(this.props.feature, event.target.id)}
+            onChange={event => this.props.handleUpdateFeature(this.props.featureName, item)}
           />
           <label htmlFor={itemHash} className="feature__label">
             {item.name} ({USCurrencyFormat.format(item.cost)})
