@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
+import SpecList from './composition/SpecList';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
-import SpecList from './composition/SpecList';
-import ShoppingCart from './composition/ShoppingCart';
+
 import './App.css';
 
 // This object will allow us to
@@ -15,10 +14,6 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.updateFeature = this.updateFeature.bind(this)
-  }
   state = {
     selected: {
       Processor: {
@@ -41,21 +36,36 @@ class App extends Component {
   };
 
   updateFeature = (feature, newValue) => {
-    console.log("feature: ", feature)
-    console.log('newValue: ' , newValue);
     const selected = Object.assign({}, this.state.selected);
-    
     selected[feature] = newValue;
-    console.log('selected[feature]: ', selected[feature])
-    console.log('selected: ', selected)
     this.setState({
-      selected: newValue
+      selected
     });
-   
   };
-  
+
   render() {
     
+
+    // const summary = Object.keys(this.state.selected).map((feature, idx) => {
+    //   const featureHash = feature + '-' + idx;
+    //   const selectedOption = this.state.selected[feature];
+
+    //   return (
+    //     <div className="summary__option" key={featureHash}>
+    //       <div className="summary__option__label">{feature} </div>
+    //       <div className="summary__option__value">{selectedOption.name}</div>
+    //       <div className="summary__option__cost">
+    //         {USCurrencyFormat.format(selectedOption.cost)}
+    //       </div>
+    //     </div>
+    //   );
+    // });
+
+    // const total = Object.keys(this.state.selected).reduce(
+    //   (acc, curr) => acc + this.state.selected[curr].cost,
+    //   0
+    // );
+
     return (
       <div className="App">
         <header>
@@ -64,19 +74,22 @@ class App extends Component {
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
-            <SpecList selected = {this.state.selected} features = {this.props.features} handleUpdateFeature = {(feature, newValue)=> this.updateFeature(feature, newValue)} />
+            <SpecList features={this.props.features} selected={this.state.selected} handleUpdateFeature={this.updateFeature()}/>
           </form>
-          <section className="main__summary">
+          {/* <section className="main__summary">
             <h2>Your cart</h2>
-            <ShoppingCart selected = {this.state.selected} />
-          </section>
+            {summary}
+            <div className="summary__total">
+              <div className="summary__total__label">Total</div>
+              <div className="summary__total__value">
+                {USCurrencyFormat.format(total)}
+              </div> */}
+            {/* </div>
+          </section> */}
         </main>
       </div>
     );
   }
-
-    
-  }
-
+}
 
 export default App;
