@@ -17,14 +17,15 @@ class FeatureItem extends React.Component {
           id={itemHash}
           className="feature__option"
           name={slugify(JSON.stringify(this.props.feature))}
-          // checked={item.name === this.props.selected[this.props.feature].name}
-          onChange={e => this.props.handleUpdateFeature(this.props.feature, item)}
+          checked={item.name === this.props.featureName}
+          onChange={e => this.props.handleUpdateFeature(this.props.featureName, item)}
         />
         <label htmlFor={itemHash} className="feature__label">
           {item.name} ({USCurrencyFormat.format(item.cost)})
         </label>
       </div>
     );
+
   });
   return(<div>{options}</div>)
 }

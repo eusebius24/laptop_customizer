@@ -65,7 +65,7 @@ class App extends Component {
             <h2>Customize your laptop</h2>
             <SpecList features={this.props.features} selected={this.state.selected} handleUpdateFeature={this.updateFeature}/>
           </form>
-          {/* <ShoppingCart selected={this.state.selected} /> */}
+          <ShoppingCart selected={this.state.selected} />
         </main>
       </div>
     );
