@@ -74,7 +74,7 @@ class App extends Component {
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
-            <SpecList features={this.props.features} selected={this.state.selected} handleUpdateFeature={this.updateFeature()}/>
+            <SpecList features={this.props.features} selected={this.state.selected} handleUpdateFeature={this.updateFeature}/>
           </form>
           {/* <section className="main__summary">
             <h2>Your cart</h2>

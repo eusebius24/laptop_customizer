@@ -14,6 +14,7 @@ class SpecList extends React.Component {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
         const itemHash = slugify(JSON.stringify(item));
+        console.log(item);
         return (
           <div key={itemHash} className="feature__item">
             <input
